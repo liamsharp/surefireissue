@@ -1,5 +1,7 @@
 package com.github.liamsharp;
 
+import java.util.concurrent.TimeUnit;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -33,6 +35,19 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+        final long end = System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(5);
+        
+        while (System.currentTimeMillis() < end)
+        {
+            try
+            {
+                Thread.sleep(200);
+                assertTrue( true );
+            }
+            catch (InterruptedException e)
+            {
+                fail(e.toString());
+            }
+        }
     }
 }
